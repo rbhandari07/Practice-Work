@@ -10,14 +10,14 @@ def check_rush_hour(departure, arrival):
     extra_time = 0
     if MORNING_RUSH_HOUR_BEGIN <= arrival <= MORNING_RUSH_HOUR_END:
         if MORNING_RUSH_HOUR_BEGIN <= departure <= MORNING_RUSH_HOUR_END:
-            extra_time = int((240 - (MORNING_RUSH_HOUR_END - departure_time)) / 2)
+            extra_time = int((120 - (MORNING_RUSH_HOUR_END - arrival_time)) / 2)+(MORNING_RUSH_HOUR_END - arrival_time)
         else:
             extra_time = min(arrival-MORNING_RUSH_HOUR_BEGIN, arrival-departure)
     elif MORNING_RUSH_HOUR_BEGIN <= departure <= MORNING_RUSH_HOUR_END:
         extra_time = MORNING_RUSH_HOUR_END-departure
     elif EVENING_RUSH_HOUR_BEGIN <= arrival <= EVENING_RUSH_HOUR_END:
         if EVENING_RUSH_HOUR_BEGIN <= departure <= EVENING_RUSH_HOUR_END:
-            extra_time = int((240 - (EVENING_RUSH_HOUR_END - departure_time)) / 2)
+            extra_time = int((120 - (EVENING_RUSH_HOUR_END - arrival_time)) / 2)+(EVENING_RUSH_HOUR_END - arrival_time)
         else:
             extra_time = min(arrival-EVENING_RUSH_HOUR_BEGIN, arrival-departure)
         extra_time = min(arrival-EVENING_RUSH_HOUR_BEGIN, arrival-departure)
@@ -26,7 +26,7 @@ def check_rush_hour(departure, arrival):
     return extra_time
 
 
-file = open("C:\\Users\\rbhandar\\PycharmProjects\\CCC\\2016\\input.txt", 'r')
+file = open("input", 'r')
 departure_time_list = file.readline().split(":")
 departure_time = int(departure_time_list[0])*60+int(departure_time_list[1])
 arrival_time = departure_time + 120
